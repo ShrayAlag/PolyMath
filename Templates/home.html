@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
+    </head>
+
+<h1> Hi, welcome to Polymath! </h1>
+    <h2> Polymath is a curiosity network that lets you learn about new ideas and topics by exploring the web. </h2>
+     <h2> Here are some common topics!
+         <br>
+         {% for message in get_flashed_messages()%}
+            <p> {{message}} </p>
+         {% endfor%}
+         <br/>
+     </h2>
+        <form action="greet" method="post">
+            Pick one to get started or type in 'r' to explore a random one:  <input type="text" name="topic">
+            <input type="submit" value="Explore Topic" id="topic_form">
+        </form>
 </html>

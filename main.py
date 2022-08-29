@@ -159,8 +159,9 @@ def index():
     return render_template('home.html')
 @app.route("/information", methods=["POST", "GET"])
 def information():
-  topic = request.form['topic']
-  flash(info_abt_topic(topic) + info_abt_sub_topic(topic))
+  topic = "Cooking"
+  #topic = request.form['topic']
+  flash(topic_information(topic))
   return render_template('search.html')
 
 if __name__ == "__main__":

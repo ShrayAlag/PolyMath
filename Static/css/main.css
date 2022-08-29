@@ -1,0 +1,42 @@
+@font-face{
+  font-family: "Messina";
+  src: url("MessinaSans-Light.ttf") format("truetype");
+}
+
+html *
+{
+    color: black;
+    font-family: "Messina";
+    line-height: 1.5;
+}
+
+body {
+  background: Linen;
+  font-family: "Messina";
+  margin-top: 50px;
+  margin-left: 100px;
+  }
+
+h1 {
+  font-family: "Messina";
+  font-size: 2.5em;
+  color: #0040ff;
+  }
+
+h2 {
+  font-family: "Messina";
+  font-size: 1.9em;
+  color: #0040ff;
+  }
+
+h3 {
+  font-family: "Messina";
+  font-size: 1.5em;
+  color: #0040ff;
+  }
+
+p {
+  font-family: "Messina";
+  font-size: 1.2em;
+  color:black;
+  }
