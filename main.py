@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template, request, flash
 from flask import request
 import random
 import requests
@@ -10,6 +10,7 @@ import transformers
 from transformers import pipeline
 
 app = Flask(__name__)
+app.secret_key = "Polymath"
 
 sub_topics = []
 def remove_tags(text):
@@ -152,18 +153,15 @@ def info_abt_topic():
   else:
     return ""
     
-@app.route("/")
+@app.route("/home")
 def index():
-    return (
-    "<h1> Hi, welcome to Polymath! </h1>" +
-    "<h2> Polymath is a curiosity network that lets you learn about new ideas and topics by exploring the web. </h2>" +
-    f"<h2> Here are some common topics! <br> {print_topics()} <br/> </h2>" +
-    """<form action="" method="get">
-            Pick one to get started or type in 'r' to explore a random one:  <input type="text" name="topic">
-            <input type="submit" value="Explore Topic">
-        </form>""" +
-        f"{info_abt_topic()}" +  f"{info_abt_sub_topic()}"
-    )
+    flash(get_subject_list())
+    return render_template('home.html')
+@app.route("/information", methods=["POST", "GET"])
+def information():
+  topic = request.form['topic']
+  flash(info_abt_topic(topic) + info_abt_sub_topic(topic))
+  return render_template('search.html')
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080, debug=True)
