@@ -20,20 +20,26 @@ body {
 h1 {
   font-family: "Messina";
   font-size: 2.5em;
-  color: #0040ff;
+  background: -webkit-linear-gradient(blue, orange);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   }
 
 h2 {
   font-family: "Messina";
   font-size: 1.9em;
-  color: #0040ff;
+  color: blueviolet;
   }
 
 h3 {
-  font-family: "Messina";
+  font-family: 'Courier New', Courier, monospace;
   font-size: 1.5em;
-  color: #0040ff;
+  color: black;
   }
+
+form {
+  font-size: 1.4em;
+}
 
 p {
   font-family: "Messina";

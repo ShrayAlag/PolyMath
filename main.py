@@ -68,19 +68,32 @@ def get_subject_list():
   subjects = ['Cooking', 'Economics', 'biology', 'chemistry', 'physics', 'sports', 'tennis', 'basketball', 'countries', 'football', 'math', 'geography', 'literature', 'music', 'nature', 'movies', 'transportation', 'politics', 'philosophy', 'aeronautics', 'art', 'history', 'computer science', 'engineering', 'dance', 'neuroscience', 'law']
   return subjects
 
+# This is the main one: 
 def topic_information(topic_chosen):
+  orig_topic = topic_chosen
+  topic_chosen = topic_chosen.lower()
   if topic_chosen == 'r':
     topic_chosen = random.choice(get_subject_list())
+  output = 'You selected: ' + orig_topic
+  flash(output)
 
-  sub_topic_chosen = request.args.get("sub_topic", "") 
+  # sub_topic_chosen = request.args.get("sub_topic", "")
   
-  if topic_chosen not in get_subject_list() and not sub_topic_chosen:
-    return "Not Found. Please try entering one of the subjects above."
+  ### SUMMARY CODE
+  classifier = pipeline("summarization")
+  str_result = ""
+  tup = extract_article(topic_chosen)
+  summarized = classifier((tup[1])[:2048])
+  cleaned_topic = topic_chosen.replace('_', ' ')
+  str_result += "Here's some info about: " + cleaned_topic + " —> "
+  str_result += (summarized[0])['summary_text']
+  flash(str_result)
+
+  cleaned_sample = []
+  sub_topics_str = " "
 
   related_topics = random.sample(extract_init_topics(topic_chosen), 6)
 
-  cleaned_sample = []
-  sub_topics_str = "<br/>"
   for i in range(len(related_topics)):
     new = ''
     for ch in related_topics[i]:
@@ -88,7 +101,7 @@ def topic_information(topic_chosen):
         new += ' '
       else:
         new += ch
-    sub_topics_str += str(i + 1) + ". " + new + " &emsp;"
+    sub_topics_str += str(i + 1) + ". " + new + " "
     # UNCOMMENT if want line space break halfway in the list
     # if i == 2:
     #   sub_topics_str += "<br/>"
@@ -96,7 +109,26 @@ def topic_information(topic_chosen):
   
   sub_topics = cleaned_sample
 
-  return f"Topic Chosen:  {topic_chosen} <br/>" + f"{sub_topics_str}"
+  
+  #if topic_chosen not in get_subject_list() and topic_chosen not in sub_topics:
+   # return "Not Found. Please try entering one of the subjects above."
+  # yay, we found the next thingy
+  final_out = 'Here are some concepts related to your chosen topic: '
+  for i in range(len(sub_topics)):
+    if i != len(sub_topics)-1:
+      final_out += sub_topics[i]
+      final_out += ', '
+    else:
+      final_out += sub_topics[i]
+  return final_out
+
+
+def check_topic_in_wiki():
+  return NotImplementedError()
+
+
+
+
 
 def info_abt_sub_topic():
   sub_topic_chosen = request.args.get("sub_topic", "") 
@@ -111,9 +143,9 @@ def sub_topic_information(topic):
   tup = extract_article(topic)
   summarized = classifier((tup[1])[:2048])
   cleaned_topic = topic.replace('_', ' ')
-  str_result += f"Here's some info about: {cleaned_topic}"
-  str_result += "<br/>" + (summarized[0])['summary_text']
-  str_result += f"<br/> Here are some articles related to {topic}:  &emsp;&emsp;"
+  str_result += "Here's some info about:" + cleaned_topic
+  str_result += (summarized[0])['summary_text']
+  str_result += " Here are some articles related to" + topic
 
   sub_sample = random.sample(tup[2], 6)
   cleaned_sample = []
@@ -127,11 +159,11 @@ def sub_topic_information(topic):
     cleaned_sample.append(new)
   counter = 1
   for item in cleaned_sample:
-    str_result += f"{counter}. {item} &emsp;"
+    str_result += {counter} + " " + {item}
     counter += 1
-  str_result += "<br/>"
-  str_result += "<br/> Enter above to explore any subtopic"
-  str_result += "<br/> <br/> <br/> Thanks for using Polymath!"
+  str_result += " "
+  str_result += "Enter above to explore any subtopic"
+  str_result += "Thanks for using Polymath!"
   return str_result
 
 def print_topics():
@@ -155,17 +187,18 @@ def info_abt_topic():
     
 @app.route("/home")
 def index():
-    flash(get_subject_list())
+    flash(print_topics())
     return render_template('home.html')
 @app.route("/information", methods=["POST", "GET"])
 def information():
-  topic = "Cooking"
-  #topic = request.form['topic']
+  topic = request.form['topic']
   flash(topic_information(topic))
   return render_template('search.html')
 
+# topic_information: should give summarization and sub_topics
+
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=8080, debug=True)
+    app.run(host="127.0.0.1", port=8090, debug=True)
 
 
 # def client():
