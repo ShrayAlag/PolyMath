@@ -12,6 +12,8 @@ from transformers import pipeline
 app = Flask(__name__)
 app.secret_key = "Polymath"
 
+
+
 sub_topics = []
 def remove_tags(text):
   clean = re.compile('<.*?>')
@@ -31,6 +33,7 @@ def extract_article(topic):
 
   content = remove_tags(text)
 
+  """
   files = re.findall('href="/wiki/\w*"', text)
   lst = sorted(x for x in (files))
 
@@ -39,7 +42,8 @@ def extract_article(topic):
     lst[i] = lst[i][6:]
   related_articles = lst
 
-  res = (topic, content, related_articles)
+  """
+  res = (topic, content)
   return res
 
 
@@ -122,6 +126,8 @@ def topic_information(topic_chosen):
       final_out += sub_topics[i]
   return final_out
 
+## To-Dos: continue styling + use fonts, add a way to check that the article does have a wiki. Add a learn more about this 
+
 
 def check_topic_in_wiki():
   return NotImplementedError()
@@ -189,6 +195,7 @@ def info_abt_topic():
 def index():
     flash(print_topics())
     return render_template('home.html')
+
 @app.route("/information", methods=["POST", "GET"])
 def information():
   topic = request.form['topic']

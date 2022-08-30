@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <script>
+            function myFunction() {
+                let count = Number(sessionStorage.getItem('count'));
+                sessionStorage.setItem('count', count + 1);
+                document.getElementById("myText").innerHTML = count;
+            }
+        </script>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
     </head>
-<h1> Hi, welcome to Polymath </h1>
+<body onload="myFunction()">
+  <h1> Hi, welcome to Polymath </h1>
     <h2> Polymath is a curiosity network that lets you learn about new ideas and topics by exploring the web. &#127758; </h2>
      <h2> 
          {% for message in get_flashed_messages()%}
@@ -15,4 +23,11 @@
             Choose another topic!:  <input type="text" name="topic">
             <input type="submit" value="Explore Topic" id="topic_form">
         </form>
+
+
+
+        <h4>Your knowledge streak is currently: <span id="myText"></span> &#128293;</h4>
+</body>
+
+
 </html>

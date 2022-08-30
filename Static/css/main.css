@@ -3,6 +3,11 @@
   src: url("MessinaSans-Light.ttf") format("truetype");
 }
 
+@font-face{
+  font-family: "ComputerModern";
+  src: url("cmunss.ttf") format("truetype")
+}
+
 html *
 {
     color: black;
@@ -32,10 +37,16 @@ h2 {
   }
 
 h3 {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "ComputerModern";
   font-size: 1.5em;
   color: black;
   }
+
+h4 {
+  font-family: "Messina";
+  font-size: 1.4em;
+  color orange;
+}
 
 form {
   font-size: 1.4em;
