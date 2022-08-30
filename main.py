@@ -76,9 +76,12 @@ def get_subject_list():
 def topic_information(topic_chosen):
   orig_topic = topic_chosen
   topic_chosen = topic_chosen.lower()
+  output = ''
   if topic_chosen == 'r':
     topic_chosen = random.choice(get_subject_list())
-  output = 'You selected: ' + orig_topic
+    output = 'You selected: ' + topic_chosen
+  else:
+    output = 'You selected: ' + orig_topic
   flash(output)
 
   # sub_topic_chosen = request.args.get("sub_topic", "")
@@ -89,7 +92,7 @@ def topic_information(topic_chosen):
   tup = extract_article(topic_chosen)
   summarized = classifier((tup[1])[:2048])
   cleaned_topic = topic_chosen.replace('_', ' ')
-  str_result += "Here's some info about: " + cleaned_topic + " —> "
+  str_result += "Here's some info about: " + cleaned_topic + " ... "
   str_result += (summarized[0])['summary_text']
   flash(str_result)
 
