@@ -9,10 +9,19 @@
             }
         </script>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
+
+        <div class="topnav">
+            <a class="active" href="./home">Home</a>
+            <a href="./about.html" >About</a>
+          </div>
     </head>
 <body onload="myFunction()">
     <div style="text-align:center">
-  <h1> Hi, welcome to Polymath </h1>
+
+        <image src="{{url_for('static',filename = 'polymathlogo.png')}}" width="511"
+        height="123" >
+
+  <!--- <h1> Hi, welcome to Polymath </h1> --->
     <h2> Polymath is a curiosity network that lets you learn about new ideas and topics by exploring the web. &#127758; </h2>
      <h2> 
          {% for message in get_flashed_messages()%}

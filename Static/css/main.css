@@ -16,7 +16,7 @@ html *
 }
 
 body {
-  background: Linen;
+  background: white;
   font-family: "Messina";
   margin-top: 50px;
   margin-left: 100px;
@@ -32,8 +32,8 @@ h1 {
 
 h2 {
   font-family: "Messina";
-  font-size: 1.9em;
-  color: blueviolet;
+  font-size: 1.7em;
+  color: blue
   }
 
 h3 {
@@ -57,3 +57,32 @@ p {
   font-size: 1.2em;
   color:black;
   }
+
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: white;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  font: "Messina";
+  float: left;
+  color: violet;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: violet;
+  color: white;
+}

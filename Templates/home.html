@@ -2,22 +2,31 @@
 <html lang="en">
     <head>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
+
+        <div class="topnav">
+            <a class="active" href="#home">Home</a>
+            <a href="./about.html">About</a>
+          </div>
     </head>
 
+    <body>
 <div style="text-align:center">
+    <image src="{{url_for('static',filename = 'polymathlogo.png')}}" width="511"
+    height="123" >
 
-<h1> Hi, welcome to Polymath </h1> 
-    <h2> Polymath is a curiosity network that lets you learn about new ideas and topics by exploring the web. &#127758; </h2>
-     <h2> Here are some common topics for you to get started &#128640;:
+<!--- <h1> Hi, welcome to Polymath </h1>  --->
+    <h2> Polymath is a curiosity network that lets you learn about new ideas and topics by exploring the web. &#127758; </h2> 
+     <h2> Here are some common topics for you to get started &#128640;: </h2>
          <br>
          {% for message in get_flashed_messages()%}
             <h3> {{message}} </h3>
          {% endfor%}
          <br/>
-     </h2>
+     
         <form action="information" method="post">
             Pick one to get started or type in 'r' to explore a random one:  <input type="text" name="topic">
             <input type="submit" value="Explore Topic" id="topic_form">
         </form>
 </div>
+</body>
 </html>
