@@ -72,6 +72,11 @@ def get_subject_list():
   subjects = ['Cooking', 'Economics', 'biology', 'chemistry', 'physics', 'sports', 'tennis', 'basketball', 'countries', 'football', 'math', 'geography', 'literature', 'music', 'nature', 'movies', 'transportation', 'politics', 'philosophy', 'aeronautics', 'art', 'history', 'computer science', 'engineering', 'dance', 'neuroscience', 'law']
   return subjects
 
+def fix_periods_issue(text):
+  return text.replace(' .', '.')
+
+
+
 # This is the main one: 
 def topic_information(topic_chosen):
   orig_topic = topic_chosen
@@ -93,7 +98,7 @@ def topic_information(topic_chosen):
   summarized = classifier((tup[1])[:2048])
   cleaned_topic = topic_chosen.replace('_', ' ')
   str_result += "Here's some info about: " + cleaned_topic + " ... "
-  str_result += (summarized[0])['summary_text']
+  str_result += fix_periods_issue((summarized[0])['summary_text'])
   flash(str_result)
 
   cleaned_sample = []
