@@ -34,3 +34,7 @@ Start the Flask server:
 ```
 
 Navigate your web browser to this address: <http://127.0.0.1:8080/>
+
+If Said No Module Named Flask:
+https://bobbyhadz.com/blog/python-no-module-named-flask
+remember to do venv
