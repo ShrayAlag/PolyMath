@@ -57,6 +57,7 @@ def extract_init_topics(topic):
   text = str(soup.find_all('p'))
 
   content = remove_tags(text)
+  #flash(content)
 
   files = re.findall('href="/wiki/\w*"', text)
   lst = sorted(x for x in (files))
@@ -76,11 +77,32 @@ def fix_periods_issue(text):
   return text.replace(' .', '.')
 
 
+def check_article_exists(topic):
+  url = 'https://en.wikipedia.org/wiki/' + topic
+  page = requests.get(url)
+
+  # scrape webpage
+  soup = BeautifulSoup(page.content, 'html.parser')
+  list(soup.children)
+  text = str(soup.find_all('p'))
+
+  content = remove_tags(text)
+
+  files = re.findall('href="/wiki/\w*"', text)
+  lst = sorted(x for x in (files))
+
+  if len(lst) == 0:
+    return False
+  else:
+    return True
+
 
 # This is the main one: 
 def topic_information(topic_chosen):
   orig_topic = topic_chosen
-  topic_chosen = topic_chosen.lower()
+  topic_chosen = "".join(topic_chosen.rstrip().lstrip())
+
+  #topic_chosen = topic_chosen.lower()
   output = ''
   if topic_chosen == 'r':
     topic_chosen = random.choice(get_subject_list())
@@ -89,7 +111,9 @@ def topic_information(topic_chosen):
     output = 'You selected: ' + orig_topic
   flash(output)
 
-  # sub_topic_chosen = request.args.get("sub_topic", "")
+  if not check_article_exists(topic_chosen):
+    flash("This is not a valid topic name. Try capitalizing proper nouns or entering a different valid topic.")
+    return ''
   
   ### SUMMARY CODE
   classifier = pipeline("summarization")
@@ -104,7 +128,9 @@ def topic_information(topic_chosen):
   cleaned_sample = []
   sub_topics_str = " "
 
-  related_topics = random.sample(extract_init_topics(topic_chosen), 6)
+  related_topics = extract_init_topics(topic_chosen)
+  if len(related_topics) > 6:
+    related_topics = random.sample(related_topics, 6)
 
   for i in range(len(related_topics)):
     new = ''
