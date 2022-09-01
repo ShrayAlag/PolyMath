@@ -1,5 +1,5 @@
 Flask==2.0.3
-requests==2.7.0
+requests>=2.0.0
 beautifulsoup4==4.11.1
-transformers==4.21.2
+transformers>=4.0.0
 tensorflow-cpu==2.9

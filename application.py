@@ -9,7 +9,7 @@ import xml
 import transformers
 from transformers import pipeline
 
-app = Flask(__name__)
+application = app = Flask(__name__)
 app.secret_key = "Polymath"
 
 
