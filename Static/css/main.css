@@ -1,0 +1,223 @@
+@font-face{
+  font-family: "Messina";
+  src: url("MessinaSans-Light.ttf") format("truetype");
+}
+
+@font-face{
+  font-family: "ComputerModern";
+  src: url("cmunss.ttf") format("truetype")
+}
+
+html *
+{
+    color: black;
+    font-family: "Messina";
+    line-height: 1.5;
+}
+
+body {
+  background: white;
+  font-family: "Messina";
+  margin-top: 50px;
+  margin-left: 100px;
+  }
+
+h1 {
+  font-family: "Messina";
+  font-size: 2.5em;
+  background: -webkit-linear-gradient(blue, orange);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  }
+
+h2 {
+  font-family: "Messina";
+  font-size: 1.7em;
+  color: blue
+  }
+
+h3 {
+  font-family: "Messina";
+  font-size: 1.5em;
+  color: black;
+  }
+
+h4 {
+  font-family: "Messina";
+  font-size: 1.4em;
+  color: orange;
+}
+
+form {
+  font-size: 1.4em;
+}
+
+p {
+  font-family: "Messina";
+  font-size: 1.2em;
+  color:black;
+  }
+
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: white;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  font: "Messina";
+  float: left;
+  color: violet;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.button {
+  background-color: lightskyblue; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.button1 {background-color: blue;} /* Green */
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: violet;
+  color: white;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.loader {
+  width: 5rem;
+  height: 5rem;
+  margin:auto; 
+  left:0;
+  right:0;
+  position:absolute;
+  margin-top: 75px;
+}
+
+.spin {
+  background: transparent;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 0;
+  -webkit-animation: spin2 1s linear infinite;
+  animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+.spin > div:not(.spin__blocker) {
+  width: 50%;
+  height: 50%;
+  z-index: -1;
+}
+.spin__blocker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  top: 3%;
+  left: 7%;
+  background: white;
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+}
+.spin__bottom-left {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  background: -webkit-linear-gradient(top left, rgba(0, 182, 255, 0.75) 0%, rgba(0, 55, 255, 0.5) 100%);
+  background: linear-gradient(to bottom right, rgba(0, 182, 255, 0.75) 0%, rgba(0, 55, 255, 0.5) 100%);
+}
+.spin__bottom-right {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: -webkit-linear-gradient(bottom left, rgba(0, 55, 255, 0.5) 0%, rgba(73, 0, 255, 0.25) 100%);
+  background: linear-gradient(to top right, rgba(0, 55, 255, 0.5) 0%, rgba(73, 0, 255, 0.25) 100%);
+}
+.spin__top-left {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  background: -webkit-linear-gradient(top left, rgba(201, 0, 255, 0) 0%, rgba(73, 0, 255, 0.25) 100%);
+  background: linear-gradient(to bottom right, rgba(201, 0, 255, 0) 0%, rgba(73, 0, 255, 0.25) 100%);
+}
+
+.spin__blocker {
+  width: 80%;
+  height: 80%;
+  top: 10%;
+  left: 10%;
+}
+
+#footer {
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:100px;   
+}
