@@ -1,7 +1,13 @@
 branch-defaults:
+  master:
+    environment: polymath-v1-dev
   sid_branch:
     environment: polymath-v1-dev
     group_suffix: null
+environment-defaults:
+  polymath-v1-dev:
+    branch: null
+    repository: null
 global:
   application_name: polymath-v1
   branch: null
