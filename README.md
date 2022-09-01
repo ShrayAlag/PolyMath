@@ -1,4 +1,10 @@
+<<<<<<< HEAD
+# Python Web Applications: Deploy Your Script as a Flask App
+
+Code snippets supplementing the [Python Web Applications: Deploy Your Script as a Flask App](https://realpython.com/python-web-applications/) tutorial.
+=======
 # PolyMath
+>>>>>>> ef235f6c71145a097de0f5c056c8c783210603f7
 
 ## Running Locally
 
